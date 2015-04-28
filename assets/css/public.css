@@ -1,0 +1,17 @@
+.main-navigation ul li a.fa:before,
+.secondary-navigation ul li a.fa:before{
+    display: inline-block;
+}
+.main-navigation ul li a.fa-phone:before{
+    content: "\f095";
+}
+.sfxpx-phone.fa:before{
+    display: none;
+}
+.sfxpx-phone i.fa{
+    float:left;
+    margin: -5px 7px 0 0;
+    font-size:1.6em;
+    display: inline-block;
+    vertical-align: middle;
+}
