@@ -136,7 +136,7 @@ final class SFX_Phone_Extension {
 
 		add_action( 'init', array( $this, 'setup' ) );
 
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'sfx_px_plugin_links' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_links' ) );
 	}
 
 	/**
