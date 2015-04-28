@@ -5,10 +5,10 @@
 .main-navigation ul li a.fa-phone:before{
     content: "\f095";
 }
-.sfxpx-phone.fa:before{
+.sfxtp-phone.fa:before{
     display: none;
 }
-.sfxpx-phone i.fa{
+.sfxtp-phone i.fa{
     float:left;
     margin: -5px 7px 0 0;
     font-size:1.6em;

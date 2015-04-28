@@ -1,16 +1,16 @@
 ( function( $ ) {
       $( document).ready( function(){
 
-          $('.sfxpx-color-field').wpColorPicker();
+          $('.sfxtp-color-field').wpColorPicker();
 
-          var $cta = $( '#sfxpx-phone-item-cta' );
-          var $phone = $( '#sfxpx-phone-item-phone' );
-          var $skype = $( '#sfxpx-phone-item-skype' );
-          var $color = $( '#sfxpx-phone-item-color' );
-          var $color_hover = $( '#sfxpx-phone-item-hover-color' );
-          var $icon = $( '#sfxpx-phone-item-icon' )
+          var $cta = $( '#sfxtp-phone-item-cta' );
+          var $phone = $( '#sfxtp-phone-item-phone' );
+          var $skype = $( '#sfxtp-phone-item-skype' );
+          var $color = $( '#sfxtp-phone-item-color' );
+          var $color_hover = $( '#sfxtp-phone-item-hover-color' );
+          var $icon = $( '#sfxtp-phone-item-icon' )
 
-          $( '#sfxpx-submit-phone' ).click( function(){
+          $( '#sfxtp-submit-phone' ).click( function(){
               var title = $cta.val() + ' ';
               var phone = $phone.val().replace( /[^+\d]/g, '' );
               var skype = $skype.val().replace( /[^a-z.\d]/g, '' );
@@ -32,7 +32,7 @@
 
               var color = $color.val();
               var color_hover = $color_hover.val();
-              var icon_class = 'sfxpx-phone ' + $icon.val();
+              var icon_class = 'sfxtp-phone ' + $icon.val();
 
               data = {
                   'menu-item-type': 'custom',
@@ -43,9 +43,9 @@
                   'menu-item-icon-hover-color': color_hover
               };
 
-              sfxpx_phone_menu.sfxpx_phone_menu_item_save( data );
+              sfxtp_phone_menu.sfxtp_phone_menu_item_save( data );
 
-              $( '.sfxpx-field, .sfxpx-color-field' ).val( '' );
+              $( '.sfxtp-field, .sfxtp-color-field' ).val( '' );
               $( '.wp-color-result' ).css( 'background-color', '' );
 
           } );
@@ -53,7 +53,7 @@
       } );
 
 
-    sfxpx_phone_menu = {
+    sfxtp_phone_menu = {
         addItemToMenu : function (menuItem, processMethod, callback) {
             var menu = $('#menu').val(),
                 nonce = $('#menu-settings-column-nonce').val(),
@@ -63,7 +63,7 @@
             callback = callback || function(){};
 
             params = {
-                'action': 'sfxpx_add_menu_item',
+                'action': 'sfxtp_add_menu_item',
                 'menu': menu,
                 'menu-settings-column-nonce': nonce,
                 'menu-item': menuItem
@@ -85,15 +85,15 @@
             });
         },
 
-        sfxpx_phone_menu_item_save : function ( data ) {
-            var url = $('#sfxpx-phone-item-url').val(),
-                label = $('#sfxpx-phone-item-title').val();
+        sfxtp_phone_menu_item_save : function ( data ) {
+            var url = $('#sfxtp-phone-item-url').val(),
+                label = $('#sfxtp-phone-item-title').val();
 
             // Show the ajax spinner
             $('.customlinkdiv .spinner').show();
 
 
-            sfxpx_phone_menu.addItemToMenu( { '-1': data }, wpNavMenu.addMenuItemToBottom, function() {
+            sfxtp_phone_menu.addItemToMenu( { '-1': data }, wpNavMenu.addMenuItemToBottom, function() {
                 // Remove the ajax spinner
                 $('.customlinkdiv .spinner').hide();
                 // Set custom link form back to defaults

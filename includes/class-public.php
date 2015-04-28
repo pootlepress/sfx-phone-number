@@ -28,23 +28,23 @@ class SFXPX_Public extends SFXPX_Abstract {
 	 * @return  void
 	 */
 	public function styles() {
-		wp_enqueue_script( 'sfxpx-public-script', trailingslashit( $this->plugin_url ) . 'assets/js/public.js', array('jquery') );
+		wp_enqueue_script( 'sfxtp-public-script', trailingslashit( $this->plugin_url ) . 'assets/js/public.js', array('jquery') );
 
-		wp_enqueue_style( 'sfxpx-public-style', trailingslashit( $this->plugin_url ) . 'assets/css/public.css' );
+		wp_enqueue_style( 'sfxtp-public-style', trailingslashit( $this->plugin_url ) . 'assets/css/public.css' );
 
 		wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' );
 
 		$style = '';
 
-		wp_add_inline_style( 'sfxpx-public-styles', $style );
+		wp_add_inline_style( 'sfxtp-public-styles', $style );
 	}
 
 	/**
-	 * SFX Phone Extension Body Class
+	 * SFX Telephone Body Class
 	 * Adds a class based on the extension name and any relevant settings.
 	 */
 	public function body_class( $classes ) {
-		$classes[] = 'sfx-phone-extension-active';
+		$classes[] = 'sfx-telephone-active';
 
 		return $classes;
 	}
@@ -58,8 +58,8 @@ class SFXPX_Public extends SFXPX_Abstract {
 	 * @return string Output for menu item
 	 */
 	public function menu_item_output( $item_output, $item, $depth, $args ){
-		//Return $item_output if no class sfxpx-phone
-		if ( ! in_array( 'sfxpx-phone', $item->classes ) ) {
+		//Return $item_output if no class sfxtp-phone
+		if ( ! in_array( 'sfxtp-phone', $item->classes ) ) {
 			return $item_output;
 		}
 
@@ -79,7 +79,7 @@ class SFXPX_Public extends SFXPX_Abstract {
 
 		$href = str_replace( array( 'http://', '?closeproto&' ), array( '', '://' ), $value );
 
-		$this->phone_menu_items[$item->ID] = get_post_meta( $item->ID, '_sfxpx_icon', true );
+		$this->phone_menu_items[$item->ID] = get_post_meta( $item->ID, '_sfxtp_icon', true );
 
 		$output_data['href'] = $href;
 
@@ -94,7 +94,7 @@ class SFXPX_Public extends SFXPX_Abstract {
 
 	public function phone_menu_item_styles(){
 		?>
-		<style id="sfxpx-phone-menu-styles">
+		<style id="sfxtp-phone-menu-styles">
 		<?php
 		foreach ( $this->phone_menu_items as $id => $properties ){
 			?>

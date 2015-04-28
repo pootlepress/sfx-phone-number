@@ -4,7 +4,7 @@
 ( function( $ ) {
     $( document).ready( function(){
 /*
-        $( '.sfxpx-phone').each( function(){
+        $( '.sfxtp-phone').each( function(){
 
             var $t = $( this );
 

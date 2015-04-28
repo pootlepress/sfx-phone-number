@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:			SFX Phone Extension
- * Plugin URI:			http://woothemes.com/products/sfx-phone-extension/
+ * Plugin Name:			SFX Telephone
+ * Plugin URI:			http://woothemes.com/products/sfx-telephone/
  * Description:			A boilerplate plugin for creating Storefront extensions.
  * Version:				1.0.0
  * Author:				WooThemes
@@ -9,10 +9,10 @@
  * Requires at least:	4.0.0
  * Tested up to:		4.0.0
  *
- * Text Domain: sfx-phone-extension
+ * Text Domain: sfx-telephone
  * Domain Path: /languages/
  *
- * @package SFX_Phone_Extension
+ * @package SFX_Telephone
  * @category Core
  * @author James Koster
  */
@@ -43,28 +43,28 @@ woothemes_queue_update( plugin_basename( __FILE__ ), 'FILE_ID', 'PRODUCT_ID' );
 // Sold On Woo - End
 
 /**
- * Returns the main instance of SFX_Phone_Extension to prevent the need to use globals.
+ * Returns the main instance of SFX_Telephone to prevent the need to use globals.
  *
  * @since  1.0.0
- * @return object SFX_Phone_Extension
+ * @return object SFX_Telephone
  */
-function SFX_Phone_Extension() {
-	return SFX_Phone_Extension::instance();
-} // End SFX_Phone_Extension()
+function SFX_Telephone() {
+	return SFX_Telephone::instance();
+} // End SFX_Telephone()
 
-SFX_Phone_Extension();
+SFX_Telephone();
 
 /**
- * Main SFX_Phone_Extension Class
+ * Main SFX_Telephone Class
  *
- * @class SFX_Phone_Extension
+ * @class SFX_Telephone
  * @version	1.0.0
  * @since 1.0.0
- * @package	SFX_Phone_Extension
+ * @package	SFX_Telephone
  */
-final class SFX_Phone_Extension {
+final class SFX_Telephone {
 	/**
-	 * SFX_Phone_Extension The single instance of SFX_Phone_Extension.
+	 * SFX_Telephone The single instance of SFX_Telephone.
 	 * @var 	object
 	 * @access  private
 	 * @since 	1.0.0
@@ -125,7 +125,7 @@ final class SFX_Phone_Extension {
 	 * @since   1.0.0
 	 */
 	public function __construct() {
-		$this->token 			= 'sfx-phone-extension';
+		$this->token 			= 'sfx-telephone';
 		$this->plugin_url 		= plugin_dir_url( __FILE__ );
 		$this->plugin_path 		= plugin_dir_path( __FILE__ );
 		$this->version 			= '1.0.0';
@@ -142,7 +142,7 @@ final class SFX_Phone_Extension {
 	/**
 	 * Setup all the things.
 	 * Only executes if Storefront or a child theme using Storefront as a parent is active and the extension specific filter returns true.
-	 * Child themes can disable this extension using the sfx_phone_extension_enabled filter
+	 * Child themes can disable this extension using the sfx_telephone_enabled filter
 	 * @return void
 	 */
 	public function setup() {
@@ -151,7 +151,7 @@ final class SFX_Phone_Extension {
 		if (
 			'Storefront' == $theme->name || 'storefront' == $theme->template
 			&&
-			apply_filters( 'sfx_phone_extension_supported', true )
+			apply_filters( 'sfx_telephone_supported', true )
 		) {
 
 			$this->admin = new SFXPX_Admin( $this->token, $this->plugin_url, $this->plugin_path );
@@ -163,14 +163,14 @@ final class SFX_Phone_Extension {
 	}
 
 	/**
-	 * Main SFX_Phone_Extension Instance
+	 * Main SFX_Telephone Instance
 	 *
-	 * Ensures only one instance of SFX_Phone_Extension is loaded or can be loaded.
+	 * Ensures only one instance of SFX_Telephone is loaded or can be loaded.
 	 *
 	 * @since 1.0.0
 	 * @static
-	 * @see SFX_Phone_Extension()
-	 * @return Main SFX_Phone_Extension instance
+	 * @see SFX_Telephone()
+	 * @return Main SFX_Telephone instance
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) )
@@ -185,7 +185,7 @@ final class SFX_Phone_Extension {
 	 * @return  void
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'sfx-phone-extension', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'sfx-telephone', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 
 	/**
@@ -213,8 +213,8 @@ final class SFX_Phone_Extension {
 	 */
 	public function plugin_links( $links ) {
 		$plugin_links = array(
-			'<a href="http://support.woothemes.com/">' . __( 'Support', 'sfx-phone-extension' ) . '</a>',
-			'<a href="http://docs.woothemes.com/document/sfx-phone-extension/">' . __( 'Docs', 'sfx-phone-extension' ) . '</a>',
+			'<a href="http://support.woothemes.com/">' . __( 'Support', 'sfx-telephone' ) . '</a>',
+			'<a href="http://docs.woothemes.com/document/sfx-telephone/">' . __( 'Docs', 'sfx-telephone' ) . '</a>',
 		);
 
 		return array_merge( $plugin_links, $links );
@@ -236,10 +236,10 @@ final class SFX_Phone_Extension {
 		$url .= '&return=' . urlencode( admin_url() . 'plugins.php' );
 		$url .= '&storefront-customizer=true';
 
-		$notices 		= get_option( 'sfx_px_activation_notice', array() );
-		$notices[]		= sprintf( __( '%sThanks for installing the SFX Phone Extension extension. To get started, visit the %sCustomizer%s.%s %sOpen the Customizer%s', 'sfx-phone-extension' ), '<p>', '<a href="' . esc_url( $url ) . '">', '</a>', '</p>', '<p><a href="' . esc_url( $url ) . '" class="button button-primary">', '</a></p>' );
+		$notices 		= get_option( 'sfxtp_activation_notice', array() );
+		$notices[]		= sprintf( __( '%sThanks for installing the SFX Telephone extension. To get started, visit the %sCustomizer%s.%s %sOpen the Customizer%s', 'sfx-telephone' ), '<p>', '<a href="' . esc_url( $url ) . '">', '</a>', '</p>', '<p><a href="' . esc_url( $url ) . '" class="button button-primary">', '</a></p>' );
 
-		update_option( 'sfx_px_activation_notice', $notices );
+		update_option( 'sfxtp_activation_notice', $notices );
 	}
 
 	/**

@@ -1,23 +1,23 @@
-.sfxpx-phone-item-wrap .howto .sfxpx-field, .sfxpx-phone-item-wrap .wp-picker-container{
+.sfxtp-phone-item-wrap .howto .sfxtp-field, .sfxtp-phone-item-wrap .wp-picker-container{
     display:block;
     float:none;
     width:100%;
     margin:7px auto;
 }
-.sfxpx-phone-item-wrap .howto .sfxpx-color-field{
+.sfxtp-phone-item-wrap .howto .sfxtp-color-field{
     float: left;
 }
-.nav-menus-php .sfxpx-phone-item-wrap .howto span{
+.nav-menus-php .sfxtp-phone-item-wrap .howto span{
     float:none;
     margin:auto;
     display:block;
 }
-.sfxpx-phone-item-wrap:after{
+.sfxtp-phone-item-wrap:after{
     content:'';
     display:block;
     clear:both;
 }
-.nav-menus-php .sfxpx-phone-item-wrap .howto .wp-picker-open+.wp-picker-input-wrap{
+.nav-menus-php .sfxtp-phone-item-wrap .howto .wp-picker-open+.wp-picker-input-wrap{
     display: inline-block;
     float:none;
 }

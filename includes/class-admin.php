@@ -21,14 +21,14 @@ class SFXPX_Admin extends SFXPX_Abstract {
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ), 999 );
 
-		add_action( 'wp_ajax_sfxpx_add_menu_item', array( $this, 'add_menu_item' ), 999 );
+		add_action( 'wp_ajax_sfxtp_add_menu_item', array( $this, 'add_menu_item' ), 999 );
 
 	}
 
 	public function admin_init(){
 
 		//Adding custom menu item
-		add_meta_box( 'sfxpx-menu-items', __( 'Phone Number' ), array( $this, 'menu_items' ), 'nav-menus', 'side', 'default' );
+		add_meta_box( 'sfxtp-menu-items', __( 'Phone Number' ), array( $this, 'menu_items' ), 'nav-menus', 'side', 'default' );
 
 	}
 
@@ -43,36 +43,36 @@ class SFXPX_Admin extends SFXPX_Abstract {
 			<input type="hidden" value="custom" name="menu-item[<?php echo $_nav_menu_placeholder; ?>][menu-item-type]" />
 
 			<!-- IDENTIFIER -->
-			<input type="hidden" value="contact" name="menu-item[<?php echo $_nav_menu_placeholder; ?>][sfx-phone-extension]" />
+			<input type="hidden" value="contact" name="menu-item[<?php echo $_nav_menu_placeholder; ?>][sfx-telephone]" />
 
-			<input type="hidden" value="" name="menu-item[<?php echo $_nav_menu_placeholder; ?>][menu-item-title]" id="sfxpx-phone-item-title"/>
-			<input type="hidden" value="" name="menu-item[<?php echo $_nav_menu_placeholder; ?>][menu-item-url]" id="sfxpx-phone-item-url"/>
+			<input type="hidden" value="" name="menu-item[<?php echo $_nav_menu_placeholder; ?>][menu-item-title]" id="sfxtp-phone-item-title"/>
+			<input type="hidden" value="" name="menu-item[<?php echo $_nav_menu_placeholder; ?>][menu-item-url]" id="sfxtp-phone-item-url"/>
 
-			<p class="sfxpx-phone-item-wrap">
-				<label class="howto" for="sfxpx-phone-item-cta">
+			<p class="sfxtp-phone-item-wrap">
+				<label class="howto" for="sfxtp-phone-item-cta">
 					<span><?php _e( 'Call to action text before phone number' ); ?></span>
-					<input id="sfxpx-phone-item-cta" type="text" class="sfxpx-field " />
+					<input id="sfxtp-phone-item-cta" type="text" class="sfxtp-field " />
 				</label>
 			</p>
 
-			<p class="sfxpx-phone-item-wrap">
-				<label class="howto" for="sfxpx-phone-item-phone">
+			<p class="sfxtp-phone-item-wrap">
+				<label class="howto" for="sfxtp-phone-item-phone">
 					<span><?php _e( 'Phone number' ); ?></span>
-					<input id="sfxpx-phone-item-phone" type="text" class="sfxpx-field " />
+					<input id="sfxtp-phone-item-phone" type="text" class="sfxtp-field " />
 				</label>
 			</p>
 
-			<p class="sfxpx-phone-item-wrap">
-				<label class="howto" for="sfxpx-phone-item-skype">
+			<p class="sfxtp-phone-item-wrap">
+				<label class="howto" for="sfxtp-phone-item-skype">
 					<span><?php _e( 'Skype ID' ); ?></span>
-					<input id="sfxpx-phone-item-skype" type="text" class="sfxpx-field " />
+					<input id="sfxtp-phone-item-skype" type="text" class="sfxtp-field " />
 				</label>
 			</p>
 
-			<p class="sfxpx-phone-item-wrap">
-				<label class="howto" for="sfxpx-phone-item-icon">
+			<p class="sfxtp-phone-item-wrap">
+				<label class="howto" for="sfxtp-phone-item-icon">
 					<span><?php _e( 'Icon Class' ); ?></span>
-					<select id="sfxpx-phone-item-icon" class="sfxpx-field" >
+					<select id="sfxtp-phone-item-icon" class="sfxtp-field" >
 						<option value="fa fa-phone">fa-phone</option>
 						<option value="fa fa-phone-square">fa-phone-square</option>
 						<option value="fa fa-skype">fa-skype</option>
@@ -80,23 +80,23 @@ class SFXPX_Admin extends SFXPX_Abstract {
 				</label>
 			</p>
 
-			<p class="sfxpx-phone-item-wrap">
-				<label class="howto" for="sfxpx-phone-item-color">
+			<p class="sfxtp-phone-item-wrap">
+				<label class="howto" for="sfxtp-phone-item-color">
 					<span><?php _e( 'Icon Color' ); ?></span>
-					<input id="sfxpx-phone-item-color" type="text" class="sfxpx-color-field" />
+					<input id="sfxtp-phone-item-color" type="text" class="sfxtp-color-field" />
 				</label>
 			</p>
 
-			<p class="sfxpx-phone-item-wrap">
-				<label class="howto" for="sfxpx-phone-item-hover-color">
+			<p class="sfxtp-phone-item-wrap">
+				<label class="howto" for="sfxtp-phone-item-hover-color">
 					<span><?php _e( 'Icon hover Color' ); ?></span>
-					<input id="sfxpx-phone-item-hover-color" type="text" class="sfxpx-color-field" />
+					<input id="sfxtp-phone-item-hover-color" type="text" class="sfxtp-color-field" />
 				</label>
 			</p>
 
 			<p class="button-controls">
 			<span class="add-to-menu">
-				<input type="submit"<?php wp_nav_menu_disabled_check( $nav_menu_selected_id ); ?> class="button-secondary submit-add-to-menu right" value="<?php esc_attr_e('Add to Menu'); ?>" name="add-custom-menu-item" id="sfxpx-submit-phone" />
+				<input type="submit"<?php wp_nav_menu_disabled_check( $nav_menu_selected_id ); ?> class="button-secondary submit-add-to-menu right" value="<?php esc_attr_e('Add to Menu'); ?>" name="add-custom-menu-item" id="sfxtp-submit-phone" />
 				<span class="spinner"></span>
 			</span>
 			</p>
@@ -112,15 +112,15 @@ class SFXPX_Admin extends SFXPX_Abstract {
 	 * @return  void
 	 */
 	public function customizer_notice() {
-		$notices = get_option( 'sfx_px_activation_notice' );
+		$notices = get_option( 'sfxtp_activation_notice' );
 
-		if ( $notices = get_option( 'sfx_px_activation_notice' ) ) {
+		if ( $notices = get_option( 'sfxtp_activation_notice' ) ) {
 
 			foreach ( $notices as $notice ) {
 				echo '<div class="updated">' . $notice . '</div>';
 			}
 
-			delete_option( 'sfx_px_activation_notice' );
+			delete_option( 'sfxtp_activation_notice' );
 		}
 	}
 
@@ -137,7 +137,7 @@ class SFXPX_Admin extends SFXPX_Abstract {
 			// only in post and page create and edit screen
 
 			wp_enqueue_script( 'wp-color-picker' );
-			wp_enqueue_script( 'sfxpx-admin-script', trailingslashit( $this->plugin_url ) . 'assets/js/admin.js', array(
+			wp_enqueue_script( 'sfxtp-admin-script', trailingslashit( $this->plugin_url ) . 'assets/js/admin.js', array(
 				'wp-color-picker',
 				'jquery'
 			) );
@@ -146,7 +146,7 @@ class SFXPX_Admin extends SFXPX_Abstract {
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_style( 'wp-mediaelement' );
 			wp_enqueue_style( 'thickbox' );
-			wp_enqueue_style( 'sfxpx-admin-style', trailingslashit( $this->plugin_url ) . 'assets/css/admin.css' );
+			wp_enqueue_style( 'sfxtp-admin-style', trailingslashit( $this->plugin_url ) . 'assets/css/admin.css' );
 		}
 	}
 
@@ -163,7 +163,7 @@ class SFXPX_Admin extends SFXPX_Abstract {
 			'hover-color' => esc_attr( $args[0]['menu-item-icon-hover-color'] ),
 		);
 
-		update_post_meta( $item_id[0], '_sfxpx_icon', $icon );
+		update_post_meta( $item_id[0], '_sfxtp_icon', $icon );
 
 	}
 
