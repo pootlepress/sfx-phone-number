@@ -24,3 +24,16 @@
 .accordion-container .howto .wp-picker-container .button{
     width:auto;
 }
+.sfxtp-control:after{
+    content: '';
+    display:block;
+    clear:both;
+}
+.sfxtp-color-control > .wp-picker-container, .sfxtp-control > select, .sfxtp-control > .widefat{
+    float: right;
+    max-width: 232px;
+}
+.sfxtp-control .description{
+    display:block;
+    clear:both;
+}

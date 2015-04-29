@@ -6,7 +6,7 @@
  * Time: 5:36 PM
  */
 
-class SFXPX_Public extends SFXPX_Abstract {
+class SFXTP_Public extends SFXTP_Abstract {
 
 	private $phone_menu_items = array();
 
@@ -33,6 +33,10 @@ class SFXPX_Public extends SFXPX_Abstract {
 		wp_enqueue_style( 'sfxtp-public-style', trailingslashit( $this->plugin_url ) . 'assets/css/public.css' );
 
 		wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' );
+
+		if ( is_customize_preview() ) {
+			wp_enqueue_script( 'sfxtp-admin-script', trailingslashit( $this->plugin_url ) . 'assets/js/admin.js', array( 'wp-color-picker', 'jquery' ) );
+		}
 
 		$style = '';
 

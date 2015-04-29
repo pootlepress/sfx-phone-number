@@ -16,7 +16,6 @@
  * @category Core
  * @author James Koster
  */
-
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Sold On Woo - Start
@@ -27,6 +26,12 @@ if ( ! function_exists( 'woothemes_queue_update' ) ) {
 	require_once( 'woo-includes/woo-functions.php' );
 }
 
+//Functions and variables
+require_once plugin_dir_path( __FILE__ ) . '/includes/vars-and-funcs.php';
+
+//Fields renderer
+require_once plugin_dir_path( __FILE__ ) . '/includes/class-render-controls.php';
+
 //Abstract Class
 require_once plugin_dir_path( __FILE__ ) . '/includes/class-abstract.php';
 
@@ -35,6 +40,9 @@ require_once plugin_dir_path( __FILE__ ) . '/includes/class-admin.php';
 
 //Public Class
 require_once plugin_dir_path( __FILE__ ) . '/includes/class-public.php';
+
+//Widget Class
+require_once plugin_dir_path( __FILE__ ) . '/includes/class-widget.php';
 
 /**
  * Plugin updates
@@ -136,6 +144,8 @@ final class SFX_Telephone {
 
 		add_action( 'init', array( $this, 'setup' ) );
 
+		add_action( 'widgets_init', array( $this, 'register_sfxtp_widget' ) );
+
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_links' ) );
 	}
 
@@ -154,8 +164,8 @@ final class SFX_Telephone {
 			apply_filters( 'sfx_telephone_supported', true )
 		) {
 
-			$this->admin = new SFXPX_Admin( $this->token, $this->plugin_url, $this->plugin_path );
-			$this->public = new SFXPX_Public( $this->token, $this->plugin_url, $this->plugin_path );
+			$this->admin = new SFXTP_Admin( $this->token, $this->plugin_url, $this->plugin_path );
+			$this->public = new SFXTP_Public( $this->token, $this->plugin_url, $this->plugin_path );
 
 			// Hide the 'More' section in the customizer
 			add_filter( 'storefront_customizer_more', '__return_false' );
@@ -251,5 +261,15 @@ final class SFX_Telephone {
 	private function _log_version_number() {
 		// Log the version number.
 		update_option( $this->token . '-version', $this->version );
+	}
+
+	/**
+	 * Registers our widget
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function register_sfxtp_widget() {
+		register_widget( 'SFXTP_Widget' );
 	}
 } // End Class

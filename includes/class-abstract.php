@@ -9,9 +9,9 @@
 /**
  * Abstract for other classes to inherit
  *
- * Class SFXPX_Abstract
+ * Class SFXTP_Abstract
  */
-abstract class SFXPX_Abstract {
+abstract class SFXTP_Abstract {
 
 	/**
 	 * The token.

@@ -1,7 +1,7 @@
 ( function( $ ) {
       $( document).ready( function(){
 
-          $('.sfxtp-color-field').wpColorPicker();
+          $('.sfxtp-color-field').wpColorPicker({clear: true, width: 232 });
 
           var $cta = $( '#sfxtp-phone-item-cta' );
           var $phone = $( '#sfxtp-phone-item-phone' );
@@ -104,8 +104,4 @@
         }
 
     }
-
-
-
-
 } )( jQuery );

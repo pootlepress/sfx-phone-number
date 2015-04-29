@@ -6,11 +6,11 @@
  * Time: 5:36 PM
  */
 
-class SFXPX_Admin extends SFXPX_Abstract {
+class SFXTP_Admin extends SFXTP_Abstract {
 
 	/**
 	 * Called by parent::__construct
-	 *
+	 * Adds the actions for admin
 	 */
 	public function init(){
 
@@ -20,6 +20,8 @@ class SFXPX_Admin extends SFXPX_Abstract {
 		add_action( 'admin_notices', array( $this, 'customizer_notice' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ), 999 );
+
+		add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue' ), 999 );
 
 		add_action( 'wp_ajax_sfxtp_add_menu_item', array( $this, 'add_menu_item' ), 999 );
 
@@ -132,7 +134,7 @@ class SFXPX_Admin extends SFXPX_Abstract {
 	public function enqueue() {
 		global $pagenow;
 
-		if ( 'nav-menus.php' == $pagenow ) {
+		if ( in_array( $pagenow , array( 'nav-menus.php', 'widgets.php' ) ) ) {
 
 			// only in post and page create and edit screen
 
@@ -185,7 +187,7 @@ class SFXPX_Admin extends SFXPX_Abstract {
 
 		$item_ids = wp_save_nav_menu_items( 0, $menu_items_data );
 
-		//Calling SFXPX_Admin::update_nav_item()
+		//Calling SFXTP_Admin::update_nav_item()
 		$this->update_nav_item( $item_ids, $menu_items_data );
 
 		if ( is_wp_error( $item_ids ) )
