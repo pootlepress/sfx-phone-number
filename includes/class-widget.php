@@ -40,11 +40,11 @@ class SFXTP_Widget extends WP_Widget {
 	public function widget( $args, $i ) {
 
 		if( empty( $i['phone'] ) && empty( $i['skype'] ) ){
-			print_awesome_r( $i );
 			return;
 		}
+		$classes = $i['only-mobile'] ? 'mobile' : '';
 
-		echo $args['before_widget'];
+		echo str_replace( 'widget_sfx-telephone', 'widget_sfx-telephone '.$classes, $args['before_widget'] );
 
 		$id = $this->id;
 
@@ -55,7 +55,6 @@ class SFXTP_Widget extends WP_Widget {
 		} else {
 			$icon_mob = $icon;
 		}
-
 
 		/** @var string $css The CSS for the widget */
 		$css = '';
@@ -92,6 +91,7 @@ class SFXTP_Widget extends WP_Widget {
 		}
 
 		$html .= '</a>';
+
 		echo $html;
 
 		echo $args['after_widget'];

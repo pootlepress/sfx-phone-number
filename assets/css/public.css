@@ -35,15 +35,14 @@
     width: 1em;
 }
 @media screen and (min-width:768px) {
-    .widget_sfx-telephone .icon.mobile{
+    .widget_sfx-telephone.mobile,
+    .widget_sfx-telephone .mobile
+    {
         display:none;
     }
 }
 @media screen and (max-width:767px) {
-    .widget_sfx-telephone .icon{
+    .widget_sfx-telephone i:not(.mobile){
         display:none;
-    }
-    .widget_sfx-telephone .icon.mobile{
-        display:inline-block;
     }
 }
