@@ -39,61 +39,88 @@ class SFXTP_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $i ) {
 
+		//Return if neither phone nor skype is set
 		if( empty( $i['phone'] ) && empty( $i['skype'] ) ){
 			return;
 		}
+
+		//The mobile class
 		$classes = $i['only-mobile'] ? 'mobile' : '';
 
-		echo str_replace( 'widget_sfx-telephone', 'widget_sfx-telephone '.$classes, $args['before_widget'] );
+		//Adding the classes to before widget args
+		echo str_replace( 'widget_sfx-telephone', 'widget_sfx-telephone ' . $classes, $args['before_widget'] );
 
-		$id = $this->id;
-
+		//The icon
 		$icon = ( 'none' == $i['fa-icon'] ) ? false : $i['fa-icon'];
 
+		//Mobile icon
 		if ( 'desktop' != $i['fa-icon-mobile'] ){
 			$icon_mob = ( 'none' == $i['fa-icon-mobile'] ) ? false : $i['fa-icon-mobile'];
 		} else {
 			$icon_mob = $icon;
 		}
 
+		/** @var string $id Caching the widget id */
+		$id = $this->id;
+
 		/** @var string $css The CSS for the widget */
 		$css = '';
+
+		//Widget background
 		$css .= "#{$id}{\n";
-		$css .= "background: {$i['bg-color']};\n";
+		$css .= "\t background: {$i['bg-color']};\n";
 		$css .= "}\n";
+
+		//Icon color and border
 		$css .= "#{$id} .icon{\n";
-		$css .= "color: {$i['icon-color']};\n";
-		$css .= "border: {$i['i-border-width']}px solid;\n";
-		$css .= "border-radius: {$i['i-border-radius']}px;\n";
+		$css .= "\t color: {$i['icon-color']};\n";
+		$css .= "\t border: {$i['i-border-width']}px solid;\n";
+		$css .= "\t border-radius: {$i['i-border-radius']}px;\n";
 		$css .= "}\n";
+
+		//Icon hover color
 		$css .= "#{$id} a:hover .icon{\n";
-		$css .= "color: {$i['icon-hover-color']};\n";
+		$css .= "\t color: {$i['icon-hover-color']};\n";
 		$css .= "}\n";
 
 		/** @var string $html The HTML output for the widget */
 		$html = "<style>{$css}</style>";
 
 		if ( '' == $i['skype'] ) {
-			$html .= '<a class="sfxtp-phone-link" href="callto://' . preg_replace( "/[^0-9]/", '',  $i['phone'] ) . '">';
+			$classes .= 'sfxtp-phone-link ';
+			$span_text = $i['phone'];
+			$span_classes = 'sfxtp-phone';
+			$url = 'callto://' . preg_replace( "/[^0-9]/", '',  $i['phone'] );
 		} else {
-			$html .= '<a class="sfxtp-skype-link" href="skype://' . preg_replace( "/[^.a-z\d]/i", '',  $i['skype'] ) . '">';
+			$classes .= 'sfxtp-skype-link ';
+			$span_text = $i['skype'];
+			$span_classes = 'sfxtp-skype';
+			$url = 'skype://' . preg_replace( "/[^.a-z\d]/i", '',  $i['skype'] );
 		}
 
+		//Adding display format ( button / text ) class
+		$classes .= $i['display-format'];
+
+		//Adding anchor
+		$html .= "<a class='{$classes}' href='{$url}'>";
+
+		//Adding icon
 		$html .= $icon ? '<i class="icon fa ' . $icon . '"></i>' : '' ;
 		$html .= $icon_mob ? '<i class="mobile icon fa ' . $icon_mob . '"></i>' : '' ;
 
+		//Adding Call to action text
 		$html .= '<span class="sfxtp-cta-text">' . $i['cta-text'] . '</span>';
 
-		if ( '' == $i['skype'] ) {
-			$html .= '<span class="sfxtp-phone"> ' . $i['phone'] . ' </span>';
-		} else {
-			$html .= '<span class="sfxtp-skype"> ' . $i['skype'] . ' </span>';
-		}
+		//Adding the contact
+		$html .= "<span class='{$span_classes}'> $span_text </span>";
 
+		//Closing anchor
 		$html .= '</a>';
 
+		//Print $html
 		echo $html;
 
+		//After widget args
 		echo $args['after_widget'];
 	}
 
