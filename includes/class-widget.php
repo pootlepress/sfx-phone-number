@@ -40,9 +40,7 @@ class SFXTP_Widget extends WP_Widget {
 	public function widget( $args, $i ) {
 
 		//Return if neither phone nor skype is set
-		if( empty( $i['phone'] ) && empty( $i['skype'] ) ){
-			return;
-		}
+		if( empty( $i['phone'] ) && empty( $i['skype'] ) ){ return; }
 
 		//The mobile class
 		$classes = $i['only-mobile'] ? 'mobile' : '';
@@ -50,17 +48,11 @@ class SFXTP_Widget extends WP_Widget {
 		//Adding the classes to before widget args
 		echo str_replace( 'widget_sfx-telephone', 'widget_sfx-telephone ' . $classes, $args['before_widget'] );
 
-		/** @var string $id Caching the widget id */
-		$id = $this->id;
-
 		//Widget styles
-		$html = $this->widget_styles( $i, $id );
+		echo $this->widget_styles( $i );
 
 		//Widget html
-		$html .= $this->widget_html( $i, $id, $classes );
-
-		//Print $html
-		echo $html;
+		echo $this->widget_html( $i );
 
 		//After widget args
 		echo $args['after_widget'];
@@ -74,7 +66,11 @@ class SFXTP_Widget extends WP_Widget {
 	 *
 	 * @return string Styles for the widget
 	 */
-	private function widget_styles( $i, $id ){
+	private function widget_styles( $i ){
+
+		/** @var string $id The widget id */
+		$id = $this->id;
+
 		/** @var string $css The CSS for the widget */
 		$css = '';
 
@@ -98,15 +94,19 @@ class SFXTP_Widget extends WP_Widget {
 		return "<style>{$css}</style>";
 	}
 
-	private function widget_html( $i, $id, $classes ){
+	private function widget_html( $i ){
+
+		/** @var string $id The widget id */
+		$id = $this->id;
+
 		if ( empty( $i['skype'] ) ) {
-			$classes .= 'sfxtp-phone-link ';
-			$url = 'callto://' . preg_replace( "/[^0-9]/", '',  $i['phone'] );
+			$classes = 'sfxtp-phone-link ';
+			$url = 'callto://' . preg_replace( '/[^0-9]/', '',  $i['phone'] );
 			$span_text = $i['phone'];
 			$span_classes = 'sfxtp-phone';
 		} else {
-			$classes .= 'sfxtp-skype-link ';
-			$url = 'skype://' . preg_replace( "/[^.a-z\d]/i", '',  $i['skype'] );
+			$classes = 'sfxtp-skype-link ';
+			$url = 'skype://' . preg_replace( '/[^.a-z\d]/i', '',  $i['skype'] );
 			$span_text = $i['skype'];
 			$span_classes = 'sfxtp-skype';
 		}
@@ -198,29 +198,45 @@ class SFXTP_Widget extends WP_Widget {
 		$fields = $this->fields();
 
 		foreach ( $fields as $f ){
+			$this->form_field( $instance, $f );
+		}
 
-			$current =  ! empty( $instance[ $f['id'] ] ) ? $instance[ $f['id'] ] : '';
+		//Scripts for form
+		$this->form_script();
+
+	}
+
+	/**
+	 * Outputs the script for form
+	 */
+	private function form_script(){
+		?>
+		<script>
+			( function( $ ) {
+				$('.sfxtp-color-field').wpColorPicker( {
+					change: function(e, ui){
+						$(e.target)
+							.val(ui.color.toString())
+							.change();
+					},
+					clear: true,
+					width: 200
+				} );
+			} )( jQuery );
+		</script>
+	<?php
+	}
+
+	/**
+	 * Prepares form field for render
+	 * @param array $instance Instance of widget
+	 * @param array $f Fields data
+	 */
+	private function form_field( $instance, $f ){
+			$current = ! empty( $instance[ $f['id'] ] ) ? $instance[ $f['id'] ] : '';
 			$f['key'] = $this->get_field_name( $f['id'] );
 			$f['html_id'] = $this->get_field_id( $f['id'] );
 			$this->render->render_field( $f, $current, 'sfxtp' );
-
-		}
-
-		?>
-<script>
-( function( $ ) {
-	$('.sfxtp-color-field').wpColorPicker( {
-		change: function(e, ui){
-			$(e.target)
-				.val(ui.color.toString())
-				.change();
-		},
-		clear: true,
-		width: 200
-	} );
-} )( jQuery );
-</script>
-	<?php
 	}
 
 	/**
