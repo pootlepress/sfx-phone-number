@@ -138,17 +138,19 @@ class SFXTP_Admin extends SFXTP_Abstract {
 
 			// only in post and page create and edit screen
 
-			wp_enqueue_script( 'wp-color-picker' );
-			wp_enqueue_script( 'sfxtp-admin-script', trailingslashit( $this->plugin_url ) . 'assets/js/admin.js', array(
-				'wp-color-picker',
-				'jquery'
-			) );
+			wp_enqueue_script(
+				'sfxtp-admin-script', $this->plugin_url . '/assets/js/admin.js',
+				array(
+					'wp-color-picker',
+					'jquery'
+				)
+			);
 
-			wp_enqueue_style( 'jquery-ui-style', '//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css' );
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_style( 'wp-mediaelement' );
 			wp_enqueue_style( 'thickbox' );
-			wp_enqueue_style( 'sfxtp-admin-style', trailingslashit( $this->plugin_url ) . 'assets/css/admin.css' );
+			wp_enqueue_style( 'jquery-ui-style', '//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css' );
+			wp_enqueue_style( 'sfxtp-admin-style', $this->plugin_url . '/assets/css/admin.css' );
 		}
 	}
 

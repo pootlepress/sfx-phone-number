@@ -28,19 +28,19 @@ class SFXTP_Public extends SFXTP_Abstract {
 	 * @return  void
 	 */
 	public function styles() {
-		wp_enqueue_script( 'sfxtp-public-script', trailingslashit( $this->plugin_url ) . 'assets/js/public.js', array('jquery') );
 
-		wp_enqueue_style( 'sfxtp-public-style', trailingslashit( $this->plugin_url ) . 'assets/css/public.css' );
+		wp_enqueue_script(
+			'sfxtp-public-script',
+			trailingslashit( $this->plugin_url ) . 'assets/js/public.js',
+			array('jquery')
+		);
 
 		wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' );
+		wp_enqueue_style( 'sfxtp-public-style', trailingslashit( $this->plugin_url ) . 'assets/css/public.css' );
 
 		if ( is_customize_preview() ) {
 			wp_enqueue_script( 'sfxtp-admin-script', trailingslashit( $this->plugin_url ) . 'assets/js/admin.js', array( 'wp-color-picker', 'jquery' ) );
 		}
-
-		$style = '';
-
-		wp_add_inline_style( 'sfxtp-public-styles', $style );
 	}
 
 	/**
