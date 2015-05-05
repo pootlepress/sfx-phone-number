@@ -68,26 +68,23 @@ class SFXTP_Widget extends WP_Widget {
 	 */
 	private function widget_styles( $i ){
 
-		/** @var string $id The widget id */
-		$id = $this->id;
-
 		/** @var string $css The CSS for the widget */
 		$css = '';
 
 		//Widget background
-		$css .= "#{$id}{\n";
+		$css .= "#{$this->id}{\n";
 		$css .= "\t background: {$i['bg-color']};\n";
 		$css .= "}\n";
 
 		//Icon color and border
-		$css .= "#{$id} .icon{\n";
+		$css .= "#{$this->id} .icon{\n";
 		$css .= "\t color: {$i['icon-color']};\n";
 		$css .= "\t border: {$i['i-border-width']}px solid;\n";
 		$css .= "\t border-radius: {$i['i-border-radius']}px;\n";
 		$css .= "}\n";
 
 		//Icon hover color
-		$css .= "#{$id} a:hover .icon{\n";
+		$css .= "#{$this->id} a:hover .icon{\n";
 		$css .= "\t color: {$i['icon-hover-color']};\n";
 		$css .= "}\n";
 

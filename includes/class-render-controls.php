@@ -159,7 +159,6 @@ if( ! class_exists( 'SFXTP_Widget_Render_Control' ) ) {
 		 * @return  string       HTML markup for the field.
 		 */
 		protected function _render_field_select( $key, $current_val, $args ) {
-			$html = '';
 			if ( isset( $args['options'] ) && ( 0 < count( (array) $args['options'] ) ) ) {
 				echo '<select id="' . esc_attr( $args['html_id'] ) . '" name="' . esc_attr( $key ) . '">' . "\n";
 				foreach ( $args['options'] as $k => $v ) {
